@@ -7,7 +7,8 @@ angMod.controller('mecontroller', function($scope, $http, $cookieStore) {
         var cookiePassword = $cookieStore.get("password");
         if(cookieEmail!=undefined && cookiePassword!=undefined){
            console.log("get cookie");
-            if(confirm("Hi " + cookieEmail+" , Welcome back! Want to log in directly?(click cancel for new username)") == true){
+            if(confirm("Hi " + cookieEmail+" , Welcome back! Want to log in directly?(click cancel for new username
+)") == true){
                 location.href = "http://www.info6250.com/";
             }else{
                 location.href = "signup.html";
@@ -26,10 +27,11 @@ angMod.controller('mecontroller', function($scope, $http, $cookieStore) {
                 .success(function () {
                     $scope.redisResponse = "Updated.";
                      console.log("Set Secceed.");
+                    location.href = "login.html";
                 });
             
         });
-        location.href = "login.html";
+
     }
     
     /*reset inputs*/
