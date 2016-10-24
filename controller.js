@@ -1,5 +1,6 @@
 var angMod = angular.module("meapp", ['ngCookies']);
 angMod.controller('mecontroller', function($scope, $http, $cookieStore) {
+    /*check cookies*/
     $scope.checkcookies = function(){
         console.log("enter function");
         var cookieEmail = $cookieStore.get("email");
@@ -30,6 +31,7 @@ angMod.controller('mecontroller', function($scope, $http, $cookieStore) {
         });
         location.href = "login.html";
     }
+    
     /*reset inputs*/
     $scope.reset = function(){
         $scope.input.email = "";
@@ -42,7 +44,6 @@ angMod.controller('mecontroller', function($scope, $http, $cookieStore) {
         $http.get("map.php?cmd=get&key=email")
             .success(function (data) {
                 // console.log("Get Succeed: ");
-                // console.log("DATA: "+ data);
                 // console.log("DATA.DATA: "+data.data);
                  if(data.data == $scope.user.email){
                     $http.get("map.php?cmd=get&key=password")
