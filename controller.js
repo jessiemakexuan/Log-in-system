@@ -1,6 +1,7 @@
 var angMod = angular.module("meapp", ['ngCookies']);
 angMod.controller('mecontroller', function($scope,$filter, $http, $cookieStore) {
-    $scope.getpassedmin = function(){
+   //hit counter history page 
+   $scope.getpassedmin = function(){
         $http.get("app.php?cmd=get&key="+$scope.mintime)
                             .success(function (data) {
                                 // console.log("Get Succeed: ");
@@ -60,6 +61,8 @@ angMod.controller('mecontroller', function($scope,$filter, $http, $cookieStore) 
                                 }
                             });
     }
+
+    //show hit counter in main page
     $scope.load = function(){
         var minkey = $filter('date')(new Date(),'yyyy-MM-dd HH:mm');
         $http.get("app.php?cmd=incr&key="+minkey)
