@@ -1,5 +1,5 @@
 var angMod = angular.module("meapp", ['ngCookies']);
-angMod.controller('mecontroller', function($scope, $http, $cookieStore) {
+angMod.controller('mecontroller', function($scope,$filter, $http, $cookieStore) {
     /*check cookies*/
     $scope.checkcookies = function(){
         console.log("enter function");
@@ -20,16 +20,13 @@ angMod.controller('mecontroller', function($scope, $http, $cookieStore) {
     
     /*sign up page*/
     $scope.signup = function(){
-        angular.forEach($scope.input, function(value, key){
-            console.log(key+" : "+value);
-            $http.get("map.php?cmd=set&key="+key+"&value="+value)
+            $http.get("app.php?cmd=set&key="+$scope.input.email+"&value="+$scope.input.password)
                 .success(function () {
                     $scope.redisResponse = "Updated.";
                      console.log("Set Secceed.");
                     location.href = "login.html";
                 });
             
-        });
 
     }
     
@@ -42,31 +39,23 @@ angMod.controller('mecontroller', function($scope, $http, $cookieStore) {
 
     /* log in page*/
     $scope.login = function(){
-        $http.get("map.php?cmd=get&key=email")
+        $http.get("app.php?cmd=get&key="+$scope.user.email)
             .success(function (data) {
                 // console.log("Get Succeed: ");
                 // console.log("DATA.DATA: "+data.data);
-                 if(data.data == $scope.user.email){
-                    $http.get("map.php?cmd=get&key=password")
-                    .success(function (data2) {
-                        if(data2.data==$scope.user.password){
-                            $cookieStore.put("email", $scope.user.email);
-                            $cookieStore.put("password", $scope.user.password);
-                            location.href = "http://www.info6250.com";
-                        }
-                        else{
-                            alert("Wrong password");
-                            $scope.user.password = "";
-                        }
-                    })
-                }
-                else{
-                    alert("no such user");
-                }
-                
+                if(data.data==$scope.user.password){
+                      $cookieStore.put("email", $scope.user.email);
+                      $cookieStore.put("password", $scope.user.password);
+                      location.href = "http://www.info6250.com";
+                }else{
+                      alert("Wrong password");
+                      $scope.user.password = "";
+                }                
             })
             .error(function () {
-                console.log("Can't get data from redis");
+                alert("no such user");
+                $scope.user.email="";
             });
+    
     }
 });
