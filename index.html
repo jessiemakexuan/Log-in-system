@@ -10,7 +10,16 @@
    <body style="text-align: center" ng-app="meapp" ng-controller="mecontroller" data-ng-init="load()" >
     <h1>Welcome to online chat</h1>
     <button type="button" class="btn btn-default" onclick="window.location.href='signup.html'">Signup</button>
-    <button type="button" class="btn btn-default" ng-click="checkcookies()">Login</button><br> 
-    <p style="text-align:right; margin-right:100px; margin-top:15px" >Today's total visitors: {{timesPerDay}}</p>  
+    <button type="button" class="btn btn-default" ng-click="checkcookies()">Login</button><br>
+    <section style="border: 1px solid black;width:150px; padding:2px; text-align:left; margin-left:80%; margin-top:15px" >
+    <h4>Total visitors:</h4>
+    <p>Minute: {{timesPerMin}}</p> 
+    <p>Last Minute: {{timesPerLastMin}}</p>
+    <p>Hour: {{timesPerHour}}</p>
+    <p>Today: {{timesPerDay}}</p>
+    <p>Month: {{timesPerMonth}}</p>
+    <p>Year: {{timesPerYear}}</p>
+    <a  href='counterhistory.html'>More visitor history</a> 
+    </section> 
  </body>
 </html>

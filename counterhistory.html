@@ -1,0 +1,28 @@
+<html>
+   <head>
+      <title>Counter History page</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular-cookies.min.js"></script>
+      <script src="controller.js"></script>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+   </head>
+   <body  style="text-align: center">
+         <button  type="button" class="btn btn-default" onclick="window.location.href='index.html'">back to Main page</button>
+        <h1>Total visitor's history</h1>
+        <h4>Enter any time you hope to check(in right pattern)</h4>
+        <form ng-app="meapp" ng-controller="mecontroller">
+                <p> Minute:<input type="text" placeholder="yyyy-MM-dd HH:mm"  ng-model="mintime">
+                <span><button type="button" class="btn btn-default" ng-click="getpassedmin()" >Get</button></span><span>{{minvisitor}}</span></p>
+                <p> Hour:<input type="text" placeholder="yyyy-MM-dd HH"  ng-model="hourtime">
+                <span><button type="button" class="btn btn-default" ng-click="getpassedhour()" >Get</button></span><span>{{hourvisitor}}</span></p>
+                <p> Day:<input type="text" placeholder="yyyy-MM-dd"  ng-model="daytime">
+                <span><button type="button" class="btn btn-default" ng-click="getpassedday()" >Get</button></span><span>{{dayvisitor}}</span></p>
+                <p> Month:<input type="text" placeholder="yyyy-MM" ng-model="monthtime">
+                <span><button type="button" class="btn btn-default" ng-click="getpassedmonth()" >Get</button></span><span>{{monthvisitor}}</span></p>
+                <p> Year:<input type="text" placeholder="yyyy"  ng-model="yeartime">
+                <span><button type="button" class="btn btn-default" ng-click="getpassedyear()" >Get</button></span><span>{{yearvisitor}}</span></p>
+       </form>
+      
+   </body>
+</html>

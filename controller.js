@@ -1,18 +1,87 @@
 var angMod = angular.module("meapp", ['ngCookies']);
 angMod.controller('mecontroller', function($scope,$filter, $http, $cookieStore) {
+    $scope.getpassedmin = function(){
+        $http.get("app.php?cmd=get&key="+$scope.mintime)
+                            .success(function (data) {
+                                // console.log("Get Succeed: ");
+                                console.log(data.data);
+                                if(data.data ==""){
+                                    $scope.minvisitor=0;
+                                }else{            
+                                    $scope.minvisitor=data.data;
+                                }
+                            });
+    }
+    $scope.getpassedhour = function(){
+        $http.get("app.php?cmd=get&key="+$scope.hourtime)
+                            .success(function (data) {
+                                // console.log("Get Succeed: ");
+                                console.log(data.data);
+                                if(data.data ==""){
+                                    $scope.hourvisitor=0;
+                                }else{            
+                                    $scope.hourvisitor=data.data;
+                                }
+                            });
+    }
+    $scope.getpassedday = function(){
+        $http.get("app.php?cmd=get&key="+$scope.daytime)
+                            .success(function (data) {
+                                // console.log("Get Succeed: ");
+                                console.log(data.data);
+                                if(data.data ==""){
+                                    $scope.dayvisitor=0;
+                                }else{            
+                                    $scope.dayvisitor=data.data;
+                                }
+                            });
+    }
+    $scope.getpassedmonth = function(){
+        $http.get("app.php?cmd=get&key="+$scope.monthtime)
+                            .success(function (data) {
+                                // console.log("Get Succeed: ");
+                                console.log(data.data);
+                                if(data.data ==""){
+                                    $scope.monthvisitor=0;
+                                }else{            
+                                    $scope.monthvisitor=data.data;
+                                }
+                            });
+    }
+    $scope.getpassedyear = function(){
+        $http.get("app.php?cmd=get&key="+$scope.yeartime)
+                            .success(function (data) {
+                                // console.log("Get Succeed: ");
+                                console.log(data.data);
+                                if(data.data ==""){
+                                    $scope.yearvisitor=0;
+                                }else{            
+                                    $scope.yearvisitor=data.data;
+                                }
+                            });
+    }
     $scope.load = function(){
-	var minkey = $filter('date')(new Date(),'yyyy-MM-dd HH:mm');
-	$http.get("app.php?cmd=incr&key="+minkey)
-		.success(function(){
-			$http.get("app.php?cmd=get&key="+minkey)
-		            .success(function (data) {
-                		// console.log("Get Succeed: ");
-      			        console.log(minkey+" current minute visitors : "+data.data);
-				$scope.timesPerMin=data.data;
- 			    });
-		});
-	var hourkey = $filter('date')(new Date(),'yyyy-MM-dd HH');
-	$http.get("app.php?cmd=incr&key="+hourkey)
+        var minkey = $filter('date')(new Date(),'yyyy-MM-dd HH:mm');
+        $http.get("app.php?cmd=incr&key="+minkey)
+                .success(function(){
+                        $http.get("app.php?cmd=get&key="+minkey)
+                            .success(function (data) {
+                                // console.log("Get Succeed: ");
+                                console.log(minkey+" current minute visitors : "+data.data);
+                                $scope.timesPerMin=data.data;
+                            });
+                });
+	var lasttime =new Date().setMinutes( (new Date().getMinutes()-1));
+	var lastminkey = $filter('date')(lasttime,'yyyy-MM-dd HH:mm');
+        $http.get("app.php?cmd=get&key="+lastminkey)
+                .success(function(data){
+                        // console.log("Get Succeed: ");
+                        console.log(lastminkey+" last minute visitors : "+data.data);
+                        $scope.timesPerLastMin=data.data;
+                            
+                });
+        var hourkey = $filter('date')(new Date(),'yyyy-MM-dd HH');
+        $http.get("app.php?cmd=incr&key="+hourkey)
                 .success(function(){
                         $http.get("app.php?cmd=get&key="+hourkey)
                             .success(function (data) {
@@ -21,8 +90,8 @@ angMod.controller('mecontroller', function($scope,$filter, $http, $cookieStore) 
                                 $scope.timesPerHour=data.data;
                             });
                 });
-	var daykey = $filter('date')(new Date(),'yyyy-MM-dd');
-	$http.get("app.php?cmd=incr&key="+daykey)
+        var daykey = $filter('date')(new Date(),'yyyy-MM-dd');
+        $http.get("app.php?cmd=incr&key="+daykey)
                 .success(function(){
                         $http.get("app.php?cmd=get&key="+daykey)
                             .success(function (data) {
@@ -31,6 +100,27 @@ angMod.controller('mecontroller', function($scope,$filter, $http, $cookieStore) 
                                 $scope.timesPerDay=data.data;
                             });
                 });
+        var monthkey = $filter('date')(new Date(),'yyyy-MM');
+        $http.get("app.php?cmd=incr&key="+monthkey)
+                .success(function(){
+                        $http.get("app.php?cmd=get&key="+monthkey)
+                            .success(function (data) {
+                                // console.log("Get Succeed: ");
+                                console.log(monthkey+" current Month visitors : "+data.data);
+                                $scope.timesPerMonth=data.data;
+                            });
+                });
+        var yearkey = $filter('date')(new Date(),'yyyy');
+        $http.get("app.php?cmd=incr&key="+yearkey)
+                .success(function(){
+                        $http.get("app.php?cmd=get&key="+yearkey)
+                            .success(function (data) {
+                                // console.log("Get Succeed: ");
+                                console.log(yearkey+" current Year visitors : "+data.data);
+                                $scope.timesPerYear=data.data;
+                            });
+                });
+
     }
     /*check cookies*/
     $scope.checkcookies = function(){
@@ -83,10 +173,10 @@ angMod.controller('mecontroller', function($scope,$filter, $http, $cookieStore) 
                       alert("Wrong password");
                       $scope.user.password = "";
                 }                
-	    })
+            })
             .error(function () {
-		alert("no such user");
-		$scope.user.email="";
+                alert("no such user");
+                $scope.user.email="";
             });
     
     }
