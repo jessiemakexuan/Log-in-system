@@ -1,8 +1,6 @@
 var angMod = angular.module("meapp", ['ngCookies']);
 angMod.controller('mecontroller', function($scope,$filter, $http, $cookieStore) {
     $scope.load = function(){
-	//var date = new Date();
-	//console.log(date);
 	var minkey = $filter('date')(new Date(),'yyyy-MM-dd HH:mm');
 	$http.get("app.php?cmd=incr&key="+minkey)
 		.success(function(){
