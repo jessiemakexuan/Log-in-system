@@ -171,19 +171,24 @@ angMod.controller('mecontroller', function($scope,$filter, $http, $cookieStore) 
         $http.get("app.php?cmd=get&key="+$scope.user.email)
             .success(function (data) {
                 // console.log("Get Succeed: ");
-                // console.log("DATA.DATA: "+data.data);
-                if(data.data==$scope.user.password){
-                      $cookieStore.put("email", $scope.user.email);
-                      $cookieStore.put("password", $scope.user.password);
-                      location.href = "http://www.info6250.com";
-                }else{
-                      alert("Wrong password");
-                      $scope.user.password = "";
-                }                
+                // console.log("DATA= "+data);
+		if(data.data == ""){
+			alert("no such user!");
+			$scope.user.email="";
+		}else{
+               	    if(data.data==$scope.user.password){
+                	 $cookieStore.put("email", $scope.user.email);
+                     	 $cookieStore.put("password", $scope.user.password);
+                     	 location.href = "http://www.info6250.com";
+               	    }else{
+                	 alert("Wrong password");
+                     	 $scope.user.password = "";
+               	    } 
+		}               
             })
             .error(function () {
-                alert("no such user");
-                $scope.user.email="";
+                console.log("Database failed");
+                
             });
     
     }
