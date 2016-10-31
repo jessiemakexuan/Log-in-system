@@ -80,7 +80,11 @@ angMod.controller('mecontroller', function($scope,$filter, $http, $cookieStore) 
                 .success(function(data){
                         // console.log("Get Succeed: ");
                         console.log(lastminkey+" last minute visitors : "+data.data);
-                        $scope.timesPerLastMin=data.data;
+			if(data.data == ""){
+			    $scope.timesPerLastMin = 0;
+			}else{
+                            $scope.timesPerLastMin=data.data;
+			}
                             
                 });
         var hourkey = $filter('date')(new Date(),'yyyy-MM-dd HH');
