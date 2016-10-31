@@ -7,9 +7,10 @@
       <script src="controller.js"></script>
       <meta name="viewport" content="width=device-width, initial-scale=1">
    </head>
-   <body style="text-align: center" ng-app="meapp" ng-controller="mecontroller" >
+   <body style="text-align: center" ng-app="meapp" ng-controller="mecontroller" data-ng-init="load()" >
     <h1>Welcome to online chat</h1>
     <button type="button" class="btn btn-default" onclick="window.location.href='signup.html'">Signup</button>
     <button type="button" class="btn btn-default" ng-click="checkcookies()">Login</button><br> 
-   </body>
+    <p style="text-align:right; margin-right:100px; margin-top:15px" >Today's total visitors: {{timesPerDay}}</p>  
+ </body>
 </html>
