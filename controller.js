@@ -67,55 +67,55 @@ angMod.controller('mecontroller', function($scope,$filter, $http, $cookieStore) 
         var minkey = $filter('date')(new Date(),'yyyy-MM-dd HH:mm');
         $http.get("app.php?cmd=incr&key="+minkey)
                 .success(function(){
-                        $http.get("app.php?cmd=get&key="+minkey)
-                            .success(function (data) {
+                       // $http.get("app.php?cmd=get&key="+minkey)
+                            //.success(function (data) {
                                 // console.log("Get Succeed: ");
-                                console.log(minkey+" current minute visitors : "+data.data);
-                                $scope.timesPerMin=data.data;
-                            });
+                               // console.log(minkey+" current minute visitors : "+data.data);
+                                //$scope.timesPerMin=data.data;
+                           // });
                 });
-	var lasttime =new Date().setMinutes( (new Date().getMinutes()-1));
-	var lastminkey = $filter('date')(lasttime,'yyyy-MM-dd HH:mm');
-        $http.get("app.php?cmd=get&key="+lastminkey)
-                .success(function(data){
+//	var lasttime =new Date().setMinutes( (new Date().getMinutes()-1));
+//	var lastminkey = $filter('date')(lasttime,'yyyy-MM-dd HH:mm');
+  //      $http.get("app.php?cmd=get&key="+lastminkey)
+    //            .success(function(data){
                         // console.log("Get Succeed: ");
-                        console.log(lastminkey+" last minute visitors : "+data.data);
-			if(data.data == ""){
-			    $scope.timesPerLastMin = 0;
-			}else{
-                            $scope.timesPerLastMin=data.data;
-			}
+      //                  console.log(lastminkey+" last minute visitors : "+data.data);
+	//		if(data.data == ""){
+	//		    $scope.timesPerLastMin = 0;
+	//		}else{
+          //                  $scope.timesPerLastMin=data.data;
+	//		}
                             
-                });
+          //      });
         var hourkey = $filter('date')(new Date(),'yyyy-MM-dd HH');
         $http.get("app.php?cmd=incr&key="+hourkey)
                 .success(function(){
-                        $http.get("app.php?cmd=get&key="+hourkey)
-                            .success(function (data) {
+       //                 $http.get("app.php?cmd=get&key="+hourkey)
+         //                   .success(function (data) {
                                 // console.log("Get Succeed: ");
-                                console.log(hourkey+" current Hour visitors : "+data.data);
-                                $scope.timesPerHour=data.data;
-                            });
+           //                     console.log(hourkey+" current Hour visitors : "+data.data);
+             //                   $scope.timesPerHour=data.data;
+               //             });
                 });
         var daykey = $filter('date')(new Date(),'yyyy-MM-dd');
         $http.get("app.php?cmd=incr&key="+daykey)
                 .success(function(){
-                        $http.get("app.php?cmd=get&key="+daykey)
-                            .success(function (data) {
+                 //       $http.get("app.php?cmd=get&key="+daykey)
+                   //         .success(function (data) {
                                 // console.log("Get Succeed: ");
-                                console.log(daykey+ " current day visitors : "+data.data);
-                                $scope.timesPerDay=data.data;
-                            });
+                     //           console.log(daykey+ " current day visitors : "+data.data);
+                       //         $scope.timesPerDay=data.data;
+                         //   });
                 });
         var monthkey = $filter('date')(new Date(),'yyyy-MM');
         $http.get("app.php?cmd=incr&key="+monthkey)
                 .success(function(){
-                        $http.get("app.php?cmd=get&key="+monthkey)
-                            .success(function (data) {
+                       // $http.get("app.php?cmd=get&key="+monthkey)
+                         //   .success(function (data) {
                                 // console.log("Get Succeed: ");
-                                console.log(monthkey+" current Month visitors : "+data.data);
-                                $scope.timesPerMonth=data.data;
-                            });
+                           //     console.log(monthkey+" current Month visitors : "+data.data);
+                             //   $scope.timesPerMonth=data.data;
+                  //          });
                 });
         var yearkey = $filter('date')(new Date(),'yyyy');
         $http.get("app.php?cmd=incr&key="+yearkey)
