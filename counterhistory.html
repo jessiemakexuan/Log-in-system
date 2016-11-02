@@ -12,13 +12,13 @@
         <h1>Total hits history</h1>
         <h4>Enter any time you hope to check(in right pattern)</h4>
         <form ng-app="meapp" ng-controller="mecontroller">
-                <p> Minute:<input type="text" placeholder="yyyy-MM-dd HH:mm"  ng-model="mintime">
+                <p> Minute:<input type="datetime-local" placeholder="yyyy-MM-dd HH:mm"  ng-model="mintime">
                 <span><button type="button" class="btn btn-default" ng-click="getpassedmin()" >Get</button></span><span>{{minvisitor}}</span></p>
                 <p> Hour:<input type="text" placeholder="yyyy-MM-dd HH"  ng-model="hourtime">
                 <span><button type="button" class="btn btn-default" ng-click="getpassedhour()" >Get</button></span><span>{{hourvisitor}}</span></p>
-                <p> Day:<input type="text" placeholder="yyyy-MM-dd"  ng-model="daytime">
+                <p> Day:<input type="date" placeholder="yyyy-MM-dd"  ng-model="daytime">
                 <span><button type="button" class="btn btn-default" ng-click="getpassedday()" >Get</button></span><span>{{dayvisitor}}</span></p>
-                <p> Month:<input type="text" placeholder="yyyy-MM" ng-model="monthtime">
+                <p> Month:<input type="month" placeholder="yyyy-MM" ng-model="monthtime">
                 <span><button type="button" class="btn btn-default" ng-click="getpassedmonth()" >Get</button></span><span>{{monthvisitor}}</span></p>
                 <p> Year:<input type="text" placeholder="yyyy"  ng-model="yeartime">
                 <span><button type="button" class="btn btn-default" ng-click="getpassedyear()" >Get</button></span><span>{{yearvisitor}}</span></p>
