@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-date_default_timezone_set('America/Chicago');
+date_default_timezone_set('America/Los_Angeles');
 require 'Predis/Autoloader.php';
 use Predis\Collection\Iterator;
 Predis\Autoloader::register();
